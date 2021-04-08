@@ -15,16 +15,17 @@ from fastapi import APIRouter, Depends
 # TODO:  9. 각 SNS 에서 Unlink
 # TODO:  10. 회원 탈퇴
 # TODO:  11. 탈퇴 회원 정보 저장 기간 동안 보유(법적 최대 한도 내에서, 가입 때 약관 동의 받아야 함, 재가입 방지 용도로 사용하면 가능)
-# TODO:  400 Bad Request
-# TODO:  401 Unauthorized
-# TODO:  403 Forbidden
-# TODO:  404 Not Found
-# TODO:  405 Method not allowed
-# TODO:  500 Internal Error
-# TODO:  502 Bad Gateway
-# TODO:  504 Timeout
-# TODO:  200 OK
-# TODO:  201 Created
+
+# 400 Bad Request
+# 401 Unauthorized
+# 403 Forbidden
+# 404 Not Found
+# 405 Method not allowed
+# 500 Internal Error
+# 502 Bad Gateway
+# 504 Timeout
+# 200 OK
+# 201 Created
 
 from sqlalchemy.orm import Session
 from starlette.responses import JSONResponse
@@ -37,7 +38,7 @@ from app.models import SnsType, Token, UserToken, UserRegister
 router = APIRouter()
 
 
-@router.post("/register/{sns_type}", status_code=200, response_model=Token)
+@router.post("/register/{sns_type}", status_code=201, response_model=Token)
 async def register(sns_type: SnsType, reg_info: UserRegister, session: Session = Depends(db.session)):
     """
     `Membership Registration API`\n
