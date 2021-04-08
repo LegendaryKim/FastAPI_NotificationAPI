@@ -37,7 +37,7 @@ from app.models import SnsType, Token, UserToken, UserRegister
 router = APIRouter()
 
 
-@router.post("/register/{sns_type}", status_code=200, responses_model=Token)
+@router.post("/register/{sns_type}", status_code=200, response_model=Token)
 async def register(sns_type: SnsType, reg_info: UserRegister, session: Session = Depends(db.session)):
     """
     `Membership Registration API`\n
