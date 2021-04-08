@@ -19,13 +19,13 @@ class SQLAlchemy:
         :return:
         """
         database_url = kwargs.get("DB_URL")
-        pool_recyle = kwargs.setdefault("DB_POOL_RECYCLE", 900)
+        pool_recycle = kwargs.setdefault("DB_POOL_RECYCLE", 900)
         echo = kwargs.setdefault("DB_ECHO", True)
 
         self._engine = create_engine(
             database_url,
             echo=echo,
-            pool_recyle=pool_recyle,
+            pool_recycle=pool_recycle,
             pool_pre_ping=True,
         )
         self._session = sessionmaker(autocommit=False, autoflush=False, bind=self._engine)
@@ -33,7 +33,7 @@ class SQLAlchemy:
         @app.on_event("startup")
         def startup():
             self._engine.connect()
-            logging.info("DB Connected")
+            logging.info("DB connected")
 
         @app.on_event("shutdown")
         def shutdown():
